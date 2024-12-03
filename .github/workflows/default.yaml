@@ -13,7 +13,7 @@ jobs:
       repository-name: 'tm-queue-create-event'
       service-name: "create-event"
       name-space: 'tm-queue'
-    secrets: inherit
+    secrets: inherit 
     
   CD:
     needs:
