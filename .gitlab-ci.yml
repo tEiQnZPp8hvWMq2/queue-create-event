@@ -1,0 +1,20 @@
+include:
+  - project: 'exp-system-x-tm/cicd/pipeline-template'
+    ref: main
+    file: "gitlab-ci-pipeline-template.yml"
+
+variables: 
+  SERVICE_NAME: "create-event"
+  REPOSITORY_NAME: "tm-queue-create-event"
+  NAME_SPACE: "tm-queue"
+  # PRODUCION_DOCKER_ARGS: "--build-arg=BUILD_ENV=prod"
+# test:
+#   stage: test
+#   cache:
+#     key: ${CI_COMMIT_REF_SLUG}-TEST
+#     untracked: true
+#     policy: pull-push
+#   image: node:14.18.1-alpine
+#   script: 
+#     - npm install
+#     - npm run test

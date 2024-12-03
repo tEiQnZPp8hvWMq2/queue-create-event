@@ -1,0 +1,341 @@
+syntax = "proto3";
+package event_transaction;
+// option java_multiple_files = true;
+
+// import "google/protobuf/struct.proto";
+
+// ***** EventTransaction Objects ***** //
+message EventTransactionObject {
+  string id = 1;
+  string player_username = 2;
+  string event_id = 3;
+  string event_name = 4;
+  string agent_id =5;
+  string agent_prefix = 6;
+  string reward = 7;
+  double amount = 8;
+  string currency = 9;
+  string created_at = 10;
+  string updated_at = 11;
+  string item_value = 12;
+}
+
+message Options {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+  bool loadRelationIds = 6;
+}
+
+// ***** EventTransaction Objects ***** //
+
+
+// ***** EventTransaction Status Response ***** //
+message StatusResponse {
+  bool successful = 1;
+  int32 code = 2;
+  string message = 3;
+}
+// ***** EventTransaction Status Response ***** //
+
+// ***** RequestResponse Insert ***** //
+message InsertRequest {
+  InsertRequestObject request = 1;
+}
+
+message InsertRequestObject {
+  string player_username = 1;
+  string event_id = 2;
+  string event_name = 3;
+  string agent_id = 4;
+  string agent_prefix = 5;
+  string reward = 6;
+  double amount = 7;
+  string currency = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  string item_value = 11;
+}
+
+message InsertResponse {
+  InsertResponseObject response = 1;
+}
+
+message InsertResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     DataInsertResponseObject data = 2;
+  }
+}
+
+message DataInsertResponseObject {
+  repeated DataRawInsertResponseObject raw = 1; 
+}
+
+message DataRawInsertResponseObject {
+    string id = 1;
+    string player_username = 2;
+    string event_id = 3;
+    string event_name = 4;
+    string agent_id = 5;
+    string agent_prefix = 6;
+    string reward = 7;
+    double amount = 8;
+    string currency = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    string item_value = 12;
+}
+
+// ***** RequestResponse Insert ***** //
+
+// ***** RequestResponse FindOne ***** //
+message FindOneRequest {
+  FindOneRequestObject request = 1;
+}
+
+message FindOneRequestObject{
+  EventTransactionObject where = 1;
+  Options options = 2;
+}
+
+message FindOneResponse {
+  FindOneResponseObject response = 1;
+}
+
+message FindOneResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     EventTransactionObject data = 2;
+  }
+}
+
+// ***** RequestResponse FindOne ***** //
+
+// ***** RequestResponse FindAll ***** //
+message FindAllRequest {
+  FindAllRequestObject request = 1;
+}
+
+message FindAllRequestObject{
+  EventTransactionObject where = 1;
+  Options options = 2;
+}
+
+message FindAllResponse {
+  FindAllResponseObject response = 1;
+}
+
+message FindAllResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated EventTransactionObject data = 2;
+}
+
+// ***** RequestResponse FindAll ***** //
+
+// ***** RequestResponse FindAllWhere ***** //
+message FindAllWhereRequest {
+  string request = 1;
+}
+
+message FindAllWhereRequestObject{
+  map<string,string> where = 1;
+  FindOptions options = 2;
+  repeated string args = 3;
+}
+
+message FindAllWhereResponse {
+  FindAllWhereResponseObject response = 1;
+}
+
+message FindAllWhereResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated EventTransactionObject data = 2;
+}
+
+message FindOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse FindAllWhere ***** //
+
+// ***** RequestResponse Update ***** //
+message UpdateRequest {
+  EventTransactionObject request = 1;
+  EventTransactionObject update = 2;
+}
+
+message UpdateResponse {
+  UpdateResponseObject response = 1;
+}
+
+message UpdateResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataUpdateResponseObject data = 2;
+  }
+}
+
+message DataUpdateResponseObject {
+  int32 affected = 1;
+  repeated DataRawUpdateResponseObject raw = 2;
+}
+
+message DataRawUpdateResponseObject {
+    string id = 1;
+    string player_username = 2;
+    string event_id = 3;
+    string event_name = 4;
+    string agent_id = 5;
+    string agent_prefix = 6;
+    string reward = 7;
+    double amount = 8;
+    string currency = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    string item_value = 12;
+}
+// ***** RequestResponse Update ***** //
+
+// ***** RequestResponse Delete ***** //
+message DeleteRequest {
+  EventTransactionObject request = 1;
+}
+
+message DeleteObject {
+  string id = 1;
+}
+
+message DeleteResponse {
+  DeleteResponseObject response = 1;
+}
+
+message DeleteResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataDeleteResponseObject data = 2;
+  }
+}
+
+message DataDeleteResponseObject {
+  int32 affected = 1;
+  repeated DataRawDeleteResponseObject raw = 2;
+}
+
+message DataRawDeleteResponseObject {
+    string id = 1;
+    string player_username = 2;
+    string event_id = 3;
+    string event_name = 4;
+    string agent_id = 5;
+    string agent_prefix = 6;
+    string reward = 7;
+    double amount = 8;
+    string currency = 9;
+    string created_at = 10;
+    string updated_at = 11;
+    string item_value = 12;
+}
+// ***** RequestResponse Delete ***** //
+
+
+// ***** RequestResponse Count ***** //
+message CountRequest {
+  CountRequestObject request = 1;
+}
+
+message CountRequestObject {
+  EventTransactionObject where = 1;
+}
+
+message CountResponse {
+  CountResponseObject response = 1;
+}
+
+message CountResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountResponseObject data = 2;
+  }
+}
+
+message DataCountResponseObject {
+  int32 count = 1;
+}
+// ***** RequestResponse Count ***** //
+
+// ***** RequestResponse CountAllWhere ***** //
+message CountAllWhereRequest {
+  string request = 1;
+}
+
+message CountAllWhereRequestObject {
+  EventTransactionObject where = 1;
+  Options options = 2;
+  repeated string args = 3;
+}
+
+message CountAllWhereResponse {
+  CountAllWhereResponseObject response = 1;
+}
+
+message CountAllWhereResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountAllWhereResponseObject data = 2;
+  }
+}
+
+message DataCountAllWhereResponseObject {
+  int32 count = 1;
+}
+
+message CountOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse CountAllWhere ***** //
+
+// ***** RequestResponse Query ***** //
+message QueryRequest {
+  string request = 1;
+}
+
+message QueryResponse {
+  string response = 1;
+}
+// ***** RequestResponse Query ***** //
+
+
+service EventTransactionService {
+  rpc Insert (InsertRequest) returns (InsertResponse) {}
+  rpc FindOne (FindOneRequest) returns (FindOneResponse) {}
+  rpc FindAll (FindAllRequest) returns (FindAllResponse) {}
+  rpc FindAllWhere (FindAllWhereRequest) returns (FindAllWhereResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+  rpc Count (CountRequest) returns (CountResponse) {}
+  rpc CountAllWhere (CountAllWhereRequest) returns (CountAllWhereResponse) {}
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+}
+

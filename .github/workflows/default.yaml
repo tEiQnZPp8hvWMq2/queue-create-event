@@ -1,0 +1,26 @@
+name: CICD workflow
+on:
+  push:
+    branches:
+      - "staging"
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  CI:
+    uses: tEiQnZPp8hvWMq2/workflows/.github/workflows/ci.yml@main
+    with:
+      repository-name: 'tm-queue-create-event'
+      service-name: "create-event"
+      name-space: 'tm-queue'
+    secrets: inherit
+    
+  CD:
+    needs:
+      - CI
+    uses: tEiQnZPp8hvWMq2/workflows/.github/workflows/cd.yml@main
+    with:
+      repository-name: 'tm-queue-create-event'
+      service-name: "create-event"
+      name-space: "tm-queue"
+    secrets: inherit

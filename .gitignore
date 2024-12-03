@@ -1,0 +1,8 @@
+node_modules
+package-lock.json
+.env
+.env.development
+.env.production
+public/images
+app/redis.backup
+test.js

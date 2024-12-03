@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "./aff_players.proto";
+import "./aff_transaction_sum.proto";
+import "./aff_daily_winloss.proto";
+
+package index;
+
+message None {}

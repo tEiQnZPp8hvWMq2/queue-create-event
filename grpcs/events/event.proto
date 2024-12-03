@@ -1,0 +1,321 @@
+syntax = "proto3";
+package event;
+import "./event_by_agent.proto";
+import "./event_setting.proto";
+// option java_multiple_files = true;
+
+// import "google/protobuf/struct.proto";
+
+// ***** Event Objects ***** //
+message EventObject {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string type = 4;
+  string status = 5;
+  string created_at = 6;
+  string updated_at = 7;
+  repeated event_by_agent.EventByAgentObject event_by_agent = 8;
+  repeated event_setting.EventSettingObject event_setting = 9;
+}
+
+message OptionsWithRelation {
+  bool id = 1;
+  bool name = 2;
+  bool description = 3;
+  bool type = 4;
+  bool status = 5;
+  bool created_at = 6;
+  bool updated_at = 7;
+  event_by_agent.EventByAgentObject event_by_agent = 8;
+  event_setting.EventSettingObject event_setting = 9;
+}
+
+message Options {
+  repeated string relations = 1;
+  OptionsWithRelation select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+  bool loadRelationIds = 6;
+}
+
+// ***** Event Objects ***** //
+
+
+// ***** Event Status Response ***** //
+message StatusResponse {
+  bool successful = 1;
+  int32 code = 2;
+  string message = 3;
+}
+// ***** Event Status Response ***** //
+
+// ***** RequestResponse Insert ***** //
+message InsertRequest {
+  InsertRequestObject request = 1;
+}
+
+message InsertRequestObject {
+    string name = 1;
+    string description = 2;
+    string type = 3;
+    string status = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+message InsertResponse {
+  InsertResponseObject response = 1;
+}
+
+message InsertResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataInsertResponseObject data = 2;
+  }
+}
+
+message DataInsertResponseObject {
+  repeated DataRawInsertResponseObject raw = 1; 
+}
+
+message DataRawInsertResponseObject {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string status = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+// ***** RequestResponse Insert ***** //
+
+// ***** RequestResponse FindOne ***** //
+message FindOneRequest {
+  FindOneRequestObject request = 1;
+}
+
+message FindOneRequestObject{
+  EventObject where = 1;
+  Options options = 2;
+}
+
+message FindOneResponse {
+  FindOneResponseObject response = 1;
+}
+
+message FindOneResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    EventObject data = 2;
+  }
+}
+
+// ***** RequestResponse FindOne ***** //
+
+// ***** RequestResponse FindAll ***** //
+message FindAllRequest {
+  FindAllRequestObject request = 1;
+}
+
+message FindAllRequestObject{
+  EventObject where = 1;
+  Options options = 2;
+}
+
+message FindAllResponse {
+  FindAllResponseObject response = 1;
+}
+
+message FindAllResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+  }
+  repeated EventObject data = 2;
+}
+
+// ***** RequestResponse FindAll ***** //
+
+// ***** RequestResponse FindAllWhere ***** //
+message FindAllWhereRequest {
+  string request = 1;
+}
+
+message FindAllWhereRequestObject{
+  map<string,string> where = 1;
+  FindOptions options = 2;
+  repeated string args = 3;
+}
+
+message FindAllWhereResponse {
+  FindAllWhereResponseObject response = 1;
+}
+
+message FindAllWhereResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+  }
+  repeated EventObject data = 2;
+}
+
+message FindOptions {
+  repeated string relations = 1;
+  OptionsWithRelation select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse FindAllWhere ***** //
+
+// ***** RequestResponse Update ***** //
+message UpdateRequest {
+  EventObject request = 1;
+  EventObject update = 2;
+}
+
+message UpdateResponse {
+  UpdateResponseObject response = 1;
+}
+
+message UpdateResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataUpdateResponseObject data = 2;
+  }
+}
+
+message DataUpdateResponseObject {
+  int32 affected = 1;
+  repeated DataRawUpdateResponseObject raw = 2;
+}
+
+message DataRawUpdateResponseObject {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string status = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+// ***** RequestResponse Update ***** //
+
+// ***** RequestResponse Delete ***** //
+message DeleteRequest {
+  EventObject request = 1;
+}
+
+message DeleteObject {
+  string id = 1;
+}
+
+message DeleteResponse {
+  DeleteResponseObject response = 1;
+}
+
+message DeleteResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataDeleteResponseObject data = 2;
+  }
+}
+
+message DataDeleteResponseObject {
+  int32 affected = 1;
+  repeated DataRawDeleteResponseObject raw = 2;
+}
+
+message DataRawDeleteResponseObject {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string status = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+// ***** RequestResponse Delete ***** //
+
+
+// ***** RequestResponse Count ***** //
+message CountRequest {
+  CountRequestObject request = 1;
+}
+
+message CountRequestObject {
+  EventObject where = 1;
+}
+
+message CountResponse {
+  CountResponseObject response = 1;
+}
+
+message CountResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountResponseObject data = 2;
+  }
+}
+
+message DataCountResponseObject {
+  int32 count = 1;
+}
+// ***** RequestResponse Count ***** //
+
+// ***** RequestResponse CountAllWhere ***** //
+message CountAllWhereRequest {
+  string request = 1;
+}
+
+message CountAllWhereRequestObject {
+  EventObject where = 1;
+  Options options = 2;
+  repeated string args = 3;
+}
+
+message CountAllWhereResponse {
+  CountAllWhereResponseObject response = 1;
+}
+
+message CountAllWhereResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountAllWhereResponseObject data = 2;
+  }
+}
+
+message DataCountAllWhereResponseObject {
+  int32 count = 1;
+}
+
+message CountOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse CountAllWhere ***** //
+
+
+service EventService {
+  rpc Insert (InsertRequest) returns (InsertResponse) {}
+  rpc FindOne (FindOneRequest) returns (FindOneResponse) {}
+  rpc FindAll (FindAllRequest) returns (FindAllResponse) {}
+  rpc FindAllWhere (FindAllWhereRequest) returns (FindAllWhereResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+  rpc Count (CountRequest) returns (CountResponse) {}
+  rpc CountAllWhere (CountAllWhereRequest) returns (CountAllWhereResponse) {}
+}
+

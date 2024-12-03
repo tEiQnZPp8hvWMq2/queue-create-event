@@ -1,0 +1,26 @@
+{
+  "name": "queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bull-board/api": "^3.6.0",
+    "@bull-board/express": "^3.6.0",
+    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/proto-loader": "^0.7.13",
+    "@hapi/joi": "^17.1.1",
+    "bull": "^4.16.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "moment-timezone": "^0.5.46",
+    "redis-url-parse": "^2.0.0"
+  }
+}

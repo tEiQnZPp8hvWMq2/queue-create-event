@@ -1,0 +1,363 @@
+syntax = "proto3";
+package event_item;
+import "./event_by_agent.proto";
+// option java_multiple_files = true;
+
+// import "google/protobuf/struct.proto";
+
+// ***** EventItem Objects ***** //
+message EventItemObject {
+  string id = 1;
+  string event_id = 2;
+  double position = 3;
+  double percent = 4;
+  string key = 5;
+  string url = 6;
+  double start_degree = 7;
+  double end_degree = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  string agent_id = 11;
+  string description = 12;
+  string type = 13;
+  double credit = 14;
+  event_by_agent.EventByAgentObject event_agent = 15;
+  string item_value = 16;
+}
+
+message OptionsWithRelation {
+  bool id = 1;
+  bool event_id =2;
+  bool agent_id = 3;
+  bool position = 4;
+  bool percent = 5;
+  bool key = 6;
+  bool url = 7;
+  bool start_degree = 8;
+  bool end_degree = 9;
+  bool description = 10;
+  bool type = 11;
+  bool credit = 12;
+  bool item_value = 13;
+}
+
+message Options {
+  repeated string relations = 1;
+  OptionsWithRelation select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+  bool loadRelationIds = 6;
+}
+
+// ***** EventItem Objects ***** //
+
+
+// ***** EventItem Status Response ***** //
+message StatusResponse {
+  bool successful = 1;
+  int32 code = 2;
+  string message = 3;
+}
+// ***** EventItem Status Response ***** //
+
+// ***** RequestResponse Insert ***** //
+message InsertRequest {
+  InsertRequestObject request = 1;
+}
+
+message InsertRequestObject {
+    string event_id = 1;
+    double position = 2;
+    double percent = 3;
+    string key = 4;
+    string url = 5;
+    double start_degree = 6;
+    double end_degree = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    string agent_id = 10;
+    string description = 11;
+    string type = 12;
+    double credit = 13;
+    string item_value = 14;
+}
+
+message InsertResponse {
+  InsertResponseObject response = 1;
+}
+
+message InsertResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     DataInsertResponseObject data = 2;
+  }
+}
+
+message DataInsertResponseObject {
+  repeated DataRawInsertResponseObject raw = 1; 
+}
+
+message DataRawInsertResponseObject {
+    string id = 1;
+    string event_id = 2;
+    double position = 3;
+    double percent = 4;
+    string key = 5;
+    string url = 6;
+    double start_degree = 7;
+    double end_degree = 8;
+    string created_at = 9;
+    string updated_at = 10;
+    string agent_id = 11;
+    string description = 12;
+    string type = 13;
+    double credit = 14;
+    string item_value = 15;
+}
+
+// ***** RequestResponse Insert ***** //
+
+// ***** RequestResponse FindOne ***** //
+message FindOneRequest {
+  FindOneRequestObject request = 1;
+}
+
+message FindOneRequestObject{
+  EventItemObject where = 1;
+  Options options = 2;
+}
+
+message FindOneResponse {
+  FindOneResponseObject response = 1;
+}
+
+message FindOneResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     EventItemObject data = 2;
+  }
+}
+
+// ***** RequestResponse FindOne ***** //
+
+// ***** RequestResponse FindAll ***** //
+message FindAllRequest {
+  FindAllRequestObject request = 1;
+}
+
+message FindAllRequestObject{
+  EventItemObject where = 1;
+  Options options = 2;
+}
+
+message FindAllResponse {
+  FindAllResponseObject response = 1;
+}
+
+message FindAllResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated EventItemObject data = 2;
+}
+
+// ***** RequestResponse FindAll ***** //
+
+// ***** RequestResponse FindAllWhere ***** //
+message FindAllWhereRequest {
+  string request = 1;
+}
+
+message FindAllWhereRequestObject{
+  map<string,string> where = 1;
+  FindOptions options = 2;
+  repeated string args = 3;
+}
+
+message FindAllWhereResponse {
+  FindAllWhereResponseObject response = 1;
+}
+
+message FindAllWhereResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated EventItemObject data = 2;
+}
+
+message FindOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse FindAllWhere ***** //
+
+// ***** RequestResponse Update ***** //
+message UpdateRequest {
+  EventItemObject request = 1;
+  EventItemObject update = 2;
+}
+
+message UpdateResponse {
+  UpdateResponseObject response = 1;
+}
+
+message UpdateResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataUpdateResponseObject data = 2;
+  }
+}
+
+message DataUpdateResponseObject {
+  int32 affected = 1;
+  repeated DataRawUpdateResponseObject raw = 2;
+}
+
+message DataRawUpdateResponseObject {
+    string id = 1;
+    string event_id = 2;
+    double position = 3;
+    double percent = 4;
+    string key = 5;
+    string url = 6;
+    double start_degree = 7;
+    double end_degree = 8;
+    string created_at = 9;
+    string updated_at = 10;
+    string agent_id = 11;
+    string description = 12;
+    string type = 13;
+    double credit = 14;
+    string item_value = 15;
+}
+// ***** RequestResponse Update ***** //
+
+// ***** RequestResponse Delete ***** //
+message DeleteRequest {
+  EventItemObject request = 1;
+}
+
+message DeleteObject {
+  string id = 1;
+}
+
+message DeleteResponse {
+  DeleteResponseObject response = 1;
+}
+
+message DeleteResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataDeleteResponseObject data = 2;
+  }
+}
+
+message DataDeleteResponseObject {
+  int32 affected = 1;
+  repeated DataRawDeleteResponseObject raw = 2;
+}
+
+message DataRawDeleteResponseObject {
+    string id = 1;
+    string event_id = 2;
+    double position = 3;
+    double percent = 4;
+    string key = 5;
+    string url = 6;
+    double start_degree = 7;
+    double end_degree = 8;
+    string created_at = 9;
+    string updated_at = 10;
+    string agent_id = 11;
+    string description = 12;
+    string type = 13;
+    double credit = 14;
+    string item_value = 15;
+}
+// ***** RequestResponse Delete ***** //
+
+
+// ***** RequestResponse Count ***** //
+message CountRequest {
+  CountRequestObject request = 1;
+}
+
+message CountRequestObject {
+  EventItemObject where = 1;
+}
+
+message CountResponse {
+  CountResponseObject response = 1;
+}
+
+message CountResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountResponseObject data = 2;
+  }
+}
+
+message DataCountResponseObject {
+  int32 count = 1;
+}
+// ***** RequestResponse Count ***** //
+
+// ***** RequestResponse CountAllWhere ***** //
+message CountAllWhereRequest {
+  string request = 1;
+}
+
+message CountAllWhereRequestObject {
+  EventItemObject where = 1;
+  Options options = 2;
+  repeated string args = 3;
+}
+
+message CountAllWhereResponse {
+  CountAllWhereResponseObject response = 1;
+}
+
+message CountAllWhereResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountAllWhereResponseObject data = 2;
+  }
+}
+
+message DataCountAllWhereResponseObject {
+  int32 count = 1;
+}
+
+message CountOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse CountAllWhere ***** //
+
+
+service EventItemService {
+  rpc Insert (InsertRequest) returns (InsertResponse) {}
+  rpc FindOne (FindOneRequest) returns (FindOneResponse) {}
+  rpc FindAll (FindAllRequest) returns (FindAllResponse) {}
+  rpc FindAllWhere (FindAllWhereRequest) returns (FindAllWhereResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+  rpc Count (CountRequest) returns (CountResponse) {}
+  rpc CountAllWhere (CountAllWhereRequest) returns (CountAllWhereResponse) {}
+}
+

@@ -1,0 +1,334 @@
+syntax = "proto3";
+
+
+package aff_daily_winloss;
+
+
+// option java_multiple_files = true;
+
+// import "google/protobuf/struct.proto";
+
+// ***** Default Objects ***** //
+message DefaultObject {
+  string ukey = 1;
+  string window_start = 2;
+  string window_end = 3;
+  string player_username = 4;
+  string agent_prefix = 5;
+  string currency_code = 6;
+  int64 count_bet = 7;
+  double total_bet = 8;
+  double total_result = 9;
+  double total_rollback = 10;
+  double avg_bet = 11;
+  double total_ggr = 12;
+  string game_type = 13;
+  string player_api_username = 14;
+  int64 count_result = 15;
+  int64 count_rollback = 16;
+}
+// ***** Default Objects ***** //
+
+
+// ***** Default Status Response ***** //
+message StatusResponse {
+  bool successful = 1;
+  int32 code = 2;
+  string message = 3;
+}
+// ***** Default Status Response ***** //
+
+// ***** RequestResponse Insert ***** //
+message InsertRequest {
+  InsertRequestObject request = 1;
+}
+
+message InsertRequestObject {
+  string ukey = 1;
+  string window_start = 2;
+  string window_end = 3;
+  string player_username = 4;
+  string agent_prefix = 5;
+  string currency_code = 6;
+  int64 count_bet = 7;
+  double total_bet = 8;
+  double total_result = 9;
+  double total_rollback = 10;
+  double avg_bet = 11;
+  double total_ggr = 12;
+  string game_type = 13;
+  string player_api_username = 14;
+  int64 count_result = 15;
+  int64 count_rollback = 16;
+}
+
+message InsertResponse {
+  InsertResponseObject response = 1;
+}
+
+message InsertResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     DataInsertResponseObject data = 2;
+  }
+}
+
+message DataInsertResponseObject {
+  repeated DefaultObject raw = 1; 
+}
+
+message DataRawInsertResponseObject {
+  string id = 1;
+}
+// ***** RequestResponse Insert ***** //
+
+
+
+// ***** RequestResponse FindOne ***** //
+message FindOneRequest {
+  FindOneRequestObject request = 1;
+}
+
+message FindOneRequestObject{
+  DefaultObject where = 1;
+  FindOptions options = 2;
+}
+
+message FindOneResponse {
+  FindOneResponseObject response = 1;
+}
+
+message FindOneResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+     DefaultObject data = 2;
+  }
+}
+
+// ***** RequestResponse FindOne ***** //
+
+
+// ***** RequestResponse FindAll ***** //
+message FindAllRequest {
+  FindAllRequestObject request = 1;
+}
+
+message FindAllRequestObject{
+  DefaultObject where = 1;
+  FindOptions options = 2;
+}
+
+message FindAllResponse {
+  FindAllResponseObject response = 1;
+}
+
+message FindAllResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated DefaultObject data = 2;
+}
+
+// ***** RequestResponse FindAll ***** //
+
+
+// ***** RequestResponse FindAllWhere ***** //
+message FindAllWhereRequest {
+  string request = 1;
+}
+
+message FindAllWhereRequestObject{
+  map<string,string> where = 1;
+  FindOptions options = 2;
+  repeated string args = 3;
+}
+
+message FindAllWhereResponse {
+  FindAllWhereResponseObject response = 1;
+}
+
+message FindAllWhereResponseObject {
+  oneof ResponseType 
+  {
+     StatusResponse status = 1;
+  }
+  repeated DefaultObject data = 2;
+}
+
+message FindOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse FindAllWhere ***** //
+
+
+// ***** RequestResponse Update ***** //
+message UpdateRequest {
+  DefaultObject request = 1;
+  DefaultObject update = 2;
+}
+
+message UpdateResponse {
+  UpdateResponseObject response = 1;
+}
+
+message UpdateResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataUpdateResponseObject data = 2;
+  }
+}
+
+message DataUpdateResponseObject{
+  repeated DefaultObject raw = 1;
+  int32 affected = 2;
+}
+// ***** RequestResponse Update ***** //
+
+// ***** RequestResponse Delete ***** //
+message DeleteRequest {
+  DefaultObject request = 1;
+}
+
+message DeleteObject {
+  string id = 1;
+}
+
+message DeleteResponse {
+  DeleteResponseObject response = 1;
+}
+
+message DeleteResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataDeleteResponseObject data = 2;
+  }
+}
+
+message DataDeleteResponseObject{
+  repeated DefaultObject raw = 1;
+  int32 affected = 2;
+}
+// ***** RequestResponse Delete ***** //
+
+
+// ***** RequestResponse Count ***** //
+message CountRequest {
+  CountRequestObject request = 1;
+}
+
+message CountRequestObject {
+  DefaultObject where = 1;
+}
+
+message CountResponse {
+  CountResponseObject response = 1;
+}
+
+message CountResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountResponseObject data = 2;
+  }
+}
+
+message DataCountResponseObject {
+  int32 count = 1;
+}
+// ***** RequestResponse Count ***** //
+
+
+// ***** RequestResponse CountAllWhere ***** //
+message CountAllWhereRequest {
+  string request = 1;
+}
+
+message CountAllWhereRequestObject {
+  DefaultObject where = 1;
+  CountOptions options = 2;
+  repeated string args = 3;
+}
+
+message CountAllWhereResponse {
+  CountAllWhereResponseObject response = 1;
+}
+
+message CountAllWhereResponseObject {
+  oneof ResponseType 
+  {
+    StatusResponse status = 1;
+    DataCountAllWhereResponseObject data = 2;
+  }
+}
+
+message DataCountAllWhereResponseObject {
+  int32 count = 1;
+}
+
+message CountOptions {
+  repeated string relations = 1;
+  repeated string select = 2;
+  int32 skip = 3;
+  int32 take = 4;
+  map<string,string> order = 5;
+}
+// ***** RequestResponse CountAllWhere ***** //
+
+// ***** RequestResponse Increment ***** //
+message IncrementRequest {
+  DefaultObject request = 1;
+  string key = 2;
+  double value = 3;
+}
+
+message IncrementResponse {
+  IncrementResponseObject response = 1;
+}
+
+message IncrementResponseObject {
+  oneof ResponseType 
+  {
+      StatusResponse status = 1;
+      DataIncrementResponseObject data = 2;
+  }
+}
+
+message DataIncrementResponseObject{
+  repeated DefaultObject raw = 1;
+  int32 affected = 2;
+}
+// ***** RequestResponse Increment ***** //
+
+// ***** RequestResponse Query ***** //
+message QueryRequest {
+  string request = 1;
+}
+
+message QueryResponse {
+  string response = 1;
+}
+// ***** RequestResponse Query ***** //
+
+
+service AffDailyWinlossService {
+  rpc Insert (InsertRequest) returns (InsertResponse) {}
+  rpc FindOne (FindOneRequest) returns (FindOneResponse) {}
+  rpc FindAll (FindAllRequest) returns (FindAllResponse) {}
+  rpc FindAllWhere (FindAllWhereRequest) returns (FindAllWhereResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+  rpc Count (CountRequest) returns (CountResponse) {}
+  rpc CountAllWhere (CountAllWhereRequest) returns (CountAllWhereResponse) {}
+  rpc Increment (IncrementRequest) returns (IncrementResponse) {}
+  rpc Query (QueryRequest) returns (QueryResponse) {}
+}
+

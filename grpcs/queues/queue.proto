@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package queue;
+
+service QueueService {
+  rpc MailerQueue (QueueRequest) returns (QueueResponse) {}
+  rpc BackGroundQueue (QueueRequest) returns (QueueResponse) {}
+  rpc EventQueue (QueueRequest) returns (QueueResponse) {}
+}
+
+message QueueRequest {
+  string data = 1;
+}
+
+message QueueResponse {
+  string data = 1;
+}
