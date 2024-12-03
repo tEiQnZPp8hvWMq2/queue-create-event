@@ -1,7 +1,6 @@
 const GrpcEventByPlayerService = require('../grpcs/events/event_by_player.service');
 const GrpcEventRedeemService = require('../grpcs/events/event_redeem.service');
 const GrpcEventRedeemTransactionService = require('../grpcs/events/event_redeem_transaction.service');
-const validator = require('../validators/event');
 
 class EventController {
 
