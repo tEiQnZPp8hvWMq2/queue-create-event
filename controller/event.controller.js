@@ -1,12 +1,6 @@
 const GrpcEventByPlayerService = require('../grpcs/events/event_by_player.service');
-const GrpcEventCondition = require('../grpcs/events/event_condition.service');
-const GrpcAgentService = require('../grpcs/agents/agents.service')
 const GrpcEventRedeemService = require('../grpcs/events/event_redeem.service');
 const GrpcEventRedeemTransactionService = require('../grpcs/events/event_redeem_transaction.service');
-const GrpcEventByAgentService = require('../grpcs/events/event_by_agent.service');
-const GrpcAffDailyWinlossService = require('../grpcs/aff-players/aff_daily_winloss.service')
-const DatetimeHelper = require('../utils/datetimehelper');
-const moment = require('moment');
 const validator = require('../validators/event');
 
 class EventController {
@@ -19,7 +13,6 @@ class EventController {
                     try {
                         const findOneEventByPlayer = async (payload) => {
                             try {
-                                console.log("PASS");
                                 return await GrpcEventByPlayerService.FindOne({
                                     where: {
                                         agent_id : payload.agent_id,
