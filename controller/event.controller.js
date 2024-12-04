@@ -178,7 +178,6 @@ class EventController {
                     quantity : quantity,
                     currency : currency
                 }
-                console.log("payloadInsertEventPlayer", payloadInsertEventPlayer);
                 const insertTicketSuccess = await insertEventByPlayer(payloadInsertEventPlayer)
                 
                 // insert transaction event_redeem, event_redeem_transaction
