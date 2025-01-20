@@ -5,27 +5,6 @@ import "./event_by_agent.proto";
 
 // import "google/protobuf/struct.proto";
 
-
-message OptionsWithRelation {
-  bool id = 1;
-  bool event_id = 2;
-  bool agent_id = 3;
-  bool amount = 4;
-  bool type_receive = 5;
-  bool type_status = 6;
-  bool condition_date = 7;
-  bool start_date = 8;
-  bool end_date = 9;
-  bool redeem_code = 10;
-  bool created_at = 11;
-  bool updated_at = 12;
-  // event_by_agent.EventByAgentObject event = 13;
-  bool min_receive = 14;
-  bool condition_amount = 15;
-  bool condition_game_type = 16;
-}
-
-
 // ***** EventConditionObject Objects ***** //
 message EventConditionObject {
   string id = 1;
@@ -44,6 +23,7 @@ message EventConditionObject {
   double min_receive = 14;
   string condition_amount = 15;
   repeated string condition_game_type = 16;
+  string received_per_day = 17;
 }
 
 message OptionEventCondition {
@@ -106,6 +86,7 @@ message InsertRequestObject {
     double min_receive = 12;
     string condition_amount = 13;
     repeated string condition_game_type = 14;
+    string received_per_day = 15;
 }
 
 message InsertResponse {
@@ -140,6 +121,7 @@ message DataRawInsertResponseObject {
     double min_receive = 13;
     string condition_amount = 14;
     repeated string condition_game_type = 15;
+    string received_per_day = 16;
 }
 
 // ***** RequestResponse Insert ***** //
@@ -263,6 +245,7 @@ message DataRawUpdateResponseObject {
     double min_receive = 13;
     string condition_amount = 14;
     repeated string condition_game_type = 15;
+    string received_per_day = 16;
 }
 // ***** RequestResponse Update ***** //
 
@@ -308,6 +291,7 @@ message DataRawDeleteResponseObject {
     double min_receive = 13;
     string condition_amount = 14;
     repeated string condition_game_type = 15;
+    string received_per_day = 16;
 }
 // ***** RequestResponse Delete ***** //
 
