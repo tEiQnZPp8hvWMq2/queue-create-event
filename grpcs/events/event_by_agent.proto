@@ -39,7 +39,7 @@ message OptionsWithRelation {
   bool updated_at = 10;
   event_item.EventItemObject event_items = 11;
   event_image.EventImageObject event_images = 12;
-  event_condition.EventConditionObject event_conditions = 13;
+  event_condition.OptionEventCondition event_conditions = 13;
 }
 
 message Options {

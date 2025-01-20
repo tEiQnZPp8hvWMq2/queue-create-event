@@ -46,6 +46,26 @@ message EventConditionObject {
   repeated string condition_game_type = 16;
 }
 
+message OptionEventCondition {
+  string id = 1;
+  string event_id = 2;
+  string agent_id = 3;
+  double amount = 4;
+  string type_receive = 5;
+  string type_status = 6;
+  string condition_date = 7;
+  string start_date = 8;
+  string end_date = 9;
+  string redeem_code = 10;
+  string created_at = 11;
+  string updated_at = 12;
+  event_by_agent.EventByAgentObject event = 13;
+  double min_receive = 14;
+  string condition_amount = 15;
+  bool condition_game_type = 16;//ต่างกันตรงนี้
+  string received_per_day = 17;
+}
+
 message Options {
   repeated string relations = 1;
   repeated string select = 2;
