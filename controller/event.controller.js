@@ -72,7 +72,6 @@ class EventController {
                         return false
                     }
     
-                    
                 }
                 const insertTransactionRedeem = async (payload) => {
                     try {
