@@ -53,6 +53,7 @@ class EventController {
                             }
                         }
         
+                        
                         // get Event By Player
                         const getOneEventPlayer = await findOneEventByPlayer(payloadInsertEventPlayer)
                         let result
