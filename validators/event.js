@@ -4,7 +4,7 @@ const option = {
     stripUnknown: {
         objects: true
     }
-}
+} 
 
 
 class Validator {
